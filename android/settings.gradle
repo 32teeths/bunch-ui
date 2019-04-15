@@ -1,0 +1,3 @@
+rootProject.name = 'bunch'
+
+include ':app'

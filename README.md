@@ -1,13 +1,10 @@
-<h1 align="center">
+<h1>
   <a href="https://facebook.github.io/react-native/">
     Bunch UI
   </a>
 </h1>
 
-<p align="center">A 
-  <strong>bunch</strong><br>
- of react native elements to get start with any react native app. 
-</p>
+<p>A <strong>bunch</strong> of react native elements to get start with any react native app. </p>
 
 <p align="center">
   <a href="https://github.com/facebook/react-native/blob/master/LICENSE">

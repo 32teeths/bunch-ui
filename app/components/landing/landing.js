@@ -53,73 +53,13 @@ export default class Landing extends React.Component {
         }
     }
 
-
     loadVehicle = () => {
     }
 
     componentDidMount() {
-        removePermission();
-        // this.setPermission();
-        // this.getData();
-        // this.removePermission();
-        this.getToken();
-    }
 
-    setPermission() {
-        try {
-            setAccessToken(res.data.token);
-        } catch (error) {
-            alert('something went wrong, Please try again later');
-        }
-    }
-
-    getToken = async () => {
-
-        await GetStore('token').then((token) => {
-            if (token != null) {
-                this.setState({ token: 'Token ' + token });
-                this.getPermissions();
-            } else {
-                this.setState({ isLoading: false });
-                Notify({ message: 'Info', description: 'Token Expired, Login Again ', type: 'danger' });
-
-                Actions.LOGIN();
-
-            }
-        });
-    }
-
-    getPermissions = async () => {
-        this.setState({ isLoading: true });
-
-        const activeUser = await GetData({ url: 'me/user' });
-        if (activeUser) {
-
-            // bring down the circle
-            this.expandCirlce();
-
-            // Core.set('activeUser', activeUser);
-            SetStore('activeUser', JSON.stringify(activeUser));
-
-            this.setState({ isLoading: false, activeUser });
-
-            let permission = activeUser.permissions.map((res) => { return res.name; });
-
-            this.setState({ permissions: permission });
-            try {
-                setPermission(activeUser);
-            } catch (error) {
-                alert('something went wrong, Please try again later');
-            }
-
-        } else {
-
-            RemoveStore('token');
-
-            Notify({ message: 'Info', description: 'Token Expired, Login Again ', type: 'danger' });
-
-            Actions.LOGIN();
-        }
+        // bring down the circle
+        this.expandCirlce();
     }
 
     /**
@@ -127,8 +67,6 @@ export default class Landing extends React.Component {
      * Expand Circle 
      */
     expandCirlce = () => {
-        // this.state.circlePosition.setValue(-500)
-
         Animated.timing(
             this.state.circlePosition,
             {
@@ -137,12 +75,6 @@ export default class Landing extends React.Component {
                 easing: Easing.easing
             }
         ).start();
-
-        // Animated.timing(this.state.circlePosition, {
-        //     toValue: -250,
-        //     easing: Easing.back(),
-        //     duration: 2000,
-        //   }).start();
     }
 
     /**
@@ -227,29 +159,15 @@ export default class Landing extends React.Component {
         let options = [];
         // ACCORDING TO PEMISSION PUSH THE PAGE TO OPTION:-
 
-
-        // if (this.state.permissions.includes("list_maintenance_tickets"))
-        // options.push(r_maintainance)
-
-        // if (this.state.permissions.includes("create_notice"))
         options.push(r_maintainance)
 
-
-        // if (this.state.permissions.includes("default"))
         options.push(r_accounts)
 
         options.push(r_rentals)
 
         options.push(r_notice)
 
-        // if (this.state.permissions.includes("add_tenant"))
         options.push(r_board)
-
-        // PERMISSION ENDS
-        // if (this.state.permissions.includes("add_tenant"))
-        //    options.push(r_board)
-
-        // options.push(r_notice);
 
         options.push(r_apartment);
 

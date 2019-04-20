@@ -35,7 +35,9 @@ class Otp extends Component {
     componentDidMount() {
 
         // Validate the phone_number 
-        this.validateMobile();
+        // this.validateMobile();
+        this.setState({ isLoading: false });
+
     }
 
     /**
@@ -112,55 +114,9 @@ class Otp extends Component {
 
     submitForm() {
 
-        const { phone_number, otp } = this.state;
+        Actions.main_tab()
 
-        let formBody = { phone_number: phone_number, otp: otp };
-
-        console.log(formBody);
-
-        this.setState({ isLoading: true });
-
-        var object = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-cache',
-                'X-Apartment-Id': 1
-
-
-            },
-            body: JSON.stringify(formBody)
-        };
-
-        var url = GLOBAL.API.API_BASE_URL + 'authenticate';
-
-        fetch(url, object)
-            .then(res => res.json())
-            .then(res => {
-                this.setState({ isLoading: false });
-                if (res.status == 'success' && res.data.token != '') {
-                    try {
-
-                        console.log('%c Step 2' + ': Saving new token to asyncStorage', 'color: brown');
-                        console.log(res.data.token);
-
-                        SetStore('token', res.data.token);
-                        // setAccessToken(res.data.token);
-                        Actions.main_tab()
-                    } catch (error) {
-                        // alert('something went wrong, Please try again later');
-                    }
-                    // Actions.main_tab()
-                } else {
-                    this.errorMessage('Wrong OTP');
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ isLoading: false });
-                this.errorMessage('Something Went Wrong,Please try again.');
-            });
+        // Api Check for login should happen here
     }
 
     errorMessage(msg) {

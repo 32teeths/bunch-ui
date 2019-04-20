@@ -16,12 +16,12 @@ module.exports = {
         // SECONDARY: 'brown',
         // SECONDARY: '#2d4e27',
         // SECONDARY: '#b98b17',
-        
+
         DANGER: '#dd4b39',
         WARNING: '',
         TEXTCOLOR: '',
         // LABELCOLOR: 'brown',
-        LABELCOLOR:'#D92A50',
+        LABELCOLOR: '#D92A50',
         LINKCOLOR: '#2B41E9',
 
     },
@@ -29,6 +29,5 @@ module.exports = {
         GOOGLE_CLIENTID: '1008346385305-fh4n4k7tfle2ij5sa12pl4cina4489k2.apps.googleusercontent.com'
     },
     API: {
-        API_BASE_URL: 'https://passmein-staging.herokuapp.com/api/v1/'
     }
 }
